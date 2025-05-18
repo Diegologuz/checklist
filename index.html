@@ -5,18 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Contacto</title>
 
-    <!-- Incluimos la librería de EmailJS -->
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-
-    <script type="text/javascript">
-        // Inicializamos EmailJS con tu usuario
-        (function(){
-            emailjs.init("tu_usuario_id");  // Reemplaza con tu ID de usuario de EmailJS
-        })();
+    <!-- Incluimos la nueva versión del SDK v4 de EmailJS -->
+    <script type="module">
+        import emailjs from 'https://cdn.emailjs.com/dist/email.min.js';
+        
+        // Inicializamos EmailJS con tu ID de usuario
+        emailjs.init("tu_usuario_id");  // Reemplaza con tu ID de usuario de EmailJS
     </script>
 
     <style>
-        /* Un poco de estilo básico */
+        /* Estilos básicos */
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -77,8 +75,8 @@
 
 <div id="response-message"></div>
 
-<script type="text/javascript">
-    // Función para enviar el correo usando EmailJS
+<script type="module">
+    // Función para enviar el correo usando el SDK v4 de EmailJS
     function sendEmail() {
         var nombre = document.getElementById("nombre").value;
         var email = document.getElementById("email").value;
