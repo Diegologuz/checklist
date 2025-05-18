@@ -3,24 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Contacto</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Envío de WhatsApp desde la Web</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #25d366;
+            padding: 15px;
+            color: white;
+            font-size: 24px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            color: #666;
+        }
+        .whatsapp-button {
+            background-color: #25d366;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+        .whatsapp-button:hover {
+            background-color: #128c7e;
+        }
+        .input-group {
+            margin: 20px 0;
+        }
+        input[type="text"], textarea {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #25d366;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #128c7e;
+        }
+    </style>
 </head>
 <body>
 
-<h2>Formulario de Contacto</h2>
+<header>
+    <h1>Envío de Mensajes por WhatsApp</h1>
+</header>
 
-<form action="mailto:tuemail@dominio.com" method="post" enctype="text/plain">
-    <label for="nombre">Nombre:</label><br>
-    <input type="text" id="nombre" name="nombre" required><br><br>
-    
-    <label for="email">Correo Electrónico:</label><br>
-    <input type="email" id="email" name="email" required><br><br>
+<div class="container">
+    <h2>Envía un mensaje a nuestro número</h2>
+    <p>Simplemente haz clic en el siguiente botón para enviar un mensaje a nuestro número de WhatsApp.</p>
 
-    <label for="mensaje">Mensaje:</label><br>
-    <textarea id="mensaje" name="mensaje" rows="4" cols="50" required></textarea><br><br>
+    <!-- Botón de WhatsApp -->
+    <a href="https://wa.me/1234567890?text=¡Hola!%20Estoy%20interesado%20en%20tu%20producto." class="whatsapp-button" target="_blank">
+        Enviar mensaje por WhatsApp
+    </a>
 
-    <button type="submit">Enviar Correo</button>
-</form>
+    <div class="input-group">
+        <h3>O envíanos un mensaje personalizado:</h3>
+        <form action="#" method="post">
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required><br>
+            <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." rows="4" required></textarea><br>
+            <input type="submit" value="Enviar mensaje por WhatsApp" onclick="enviarWhatsApp(); return false;">
+        </form>
+    </div>
+</div>
+
+<script>
+    // Función para enviar el mensaje personalizado por WhatsApp
+    function enviarWhatsApp() {
+        var nombre = document.getElementById('nombre').value;
+        var mensaje = document.getElementById('mensaje').value;
+
+        // Formateamos el mensaje para que sea adecuado en un enlace
+        var mensajeFormateado = encodeURIComponent("Hola, soy " + nombre + ". " + mensaje);
+
+        // Número de teléfono al que se enviará el mensaje (modifica este número por el que desees)
+        var numeroTelefono = "1234567890"; // Reemplaza con tu número
+
+        // Abrimos WhatsApp con el mensaje y número formateado
+        var url = "https://wa.me/" + numeroTelefono + "?text=" + mensajeFormateado;
+        window.open(url, "_blank");
+    }
+</script>
 
 </body>
 </html>
