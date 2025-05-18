@@ -4,117 +4,244 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Envío de WhatsApp desde la Web</title>
+    <title>Checklist Soporte y Mantenimiento</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
             margin: 0;
             padding: 0;
-            text-align: center;
-        }
-        header {
-            background-color: #25d366;
-            padding: 15px;
-            color: white;
-            font-size: 24px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        h1 {
+            background-color: #f4f4f9;
             color: #333;
         }
-        p {
-            font-size: 18px;
-            color: #666;
-        }
-        .whatsapp-button {
-            background-color: #25d366;
-            color: white;
-            padding: 15px 30px;
-            font-size: 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+        header {
+            background-color: #4CAF50;
+            padding: 20px;
             text-align: center;
-            text-decoration: none;
+            color: white;
         }
-        .whatsapp-button:hover {
-            background-color: #128c7e;
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section h3 {
+            margin-top: 0;
+            font-size: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
         }
         .input-group {
-            margin: 20px 0;
+            margin-bottom: 15px;
         }
         input[type="text"], textarea {
-            width: 80%;
+            width: 100%;
             padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ddd;
             font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
         }
-        input[type="submit"] {
-            background-color: #25d366;
+        textarea {
+            resize: vertical;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .checkbox-group input {
+            margin-right: 10px;
+        }
+        .button {
+            background-color: #4CAF50;
             color: white;
             padding: 12px 25px;
+            font-size: 16px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 16px;
         }
-        input[type="submit"]:hover {
-            background-color: #128c7e;
+        .button:hover {
+            background-color: #45a049;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .footer .firma {
+            font-size: 14px;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Envío de Mensajes por WhatsApp</h1>
+    <h1>Checklist de Mantenimiento de Equipos</h1>
 </header>
 
 <div class="container">
-    <h2>Envía un mensaje a nuestro número</h2>
-    <p>Simplemente haz clic en el siguiente botón para enviar un mensaje a nuestro número de WhatsApp.</p>
 
-    <!-- Botón de WhatsApp -->
-    <a href="https://wa.me/1234567890?text=¡Hola!%20Estoy%20interesado%20en%20tu%20producto." class="whatsapp-button" target="_blank">
-        Enviar mensaje por WhatsApp
-    </a>
-
-    <div class="input-group">
-        <h3>O envíanos un mensaje personalizado:</h3>
-        <form action="#" method="post">
-            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required><br>
-            <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." rows="4" required></textarea><br>
-            <input type="submit" value="Enviar mensaje por WhatsApp" onclick="enviarWhatsApp(); return false;">
-        </form>
+    <!-- Información del mantenimiento -->
+    <div class="section">
+        <h2>Información del Mantenimiento</h2>
+        <div class="input-group">
+            <label for="fecha">Fecha:</label>
+            <input type="text" id="fecha" name="fecha">
+        </div>
+        <div class="input-group">
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion">
+        </div>
+        <div class="input-group">
+            <label for="sucursal">Sucursal:</label>
+            <input type="text" id="sucursal" name="sucursal">
+        </div>
+        <div class="input-group">
+            <label for="estado">Estado:</label>
+            <input type="text" id="estado" name="estado">
+        </div>
+        <div class="input-group">
+            <label for="ciudad">Ciudad:</label>
+            <input type="text" id="ciudad" name="ciudad">
+        </div>
+        <div class="input-group">
+            <label for="clave">Clave:</label>
+            <input type="text" id="clave" name="clave">
+        </div>
     </div>
+
+    <!-- Datos del usuario -->
+    <div class="section">
+        <h2>Datos del Usuario</h2>
+        <div class="input-group">
+            <label for="tipo">Tipo de equipo (Laptop o Escritorio):</label>
+            <input type="text" id="tipo" name="tipo">
+        </div>
+        <h3>Componentes</h3>
+        <div class="input-group">
+            <label for="cpu">CPU / Portátil:</label>
+            <input type="text" id="cpu" name="cpu">
+        </div>
+        <div class="input-group">
+            <label for="monitor">Monitor:</label>
+            <input type="text" id="monitor" name="monitor">
+        </div>
+        <div class="input-group">
+            <label for="teclado">Teclado y Mouse:</label>
+            <input type="text" id="teclado" name="teclado">
+        </div>
+        <div class="input-group">
+            <label for="cableado">Cableado Estructurado:</label>
+            <input type="text" id="cableado" name="cableado">
+        </div>
+        <div class="input-group">
+            <label for="impresora_ticket">Impresora de Ticket:</label>
+            <input type="text" id="impresora_ticket" name="impresora_ticket">
+        </div>
+        <div class="input-group">
+            <label for="impresora_laser">Impresora Láser:</label>
+            <input type="text" id="impresora_laser" name="impresora_laser">
+        </div>
+    </div>
+
+    <!-- Checklist de mantenimiento -->
+    <div class="section">
+        <h2>Checklist para el Mantenimiento de Equipos</h2>
+
+        <h3>Puntos de Chequeo</h3>
+        <div class="checkbox-group">
+            <label><input type="checkbox"> Verificar condiciones del equipo (manchas, rayones, golpes, etc.)</label>
+            <label><input type="checkbox"> Encender el equipo para comprobar que el sistema operativo inicie correctamente</label>
+        </div>
+
+        <h3>Revisión Previa del Equipo</h3>
+        <textarea placeholder="Detalles de la revisión previa..." rows="4"></textarea>
+    </div>
+
+    <!-- Mantenimiento de Componentes -->
+    <div class="section">
+        <h2>Mantenimiento de Componentes</h2>
+
+        <h3>Mantenimiento de la CPU / Portátil</h3>
+        <div class="checkbox-group">
+            <label><input type="checkbox"> Emplear compresora de aire y brocha para retirar polvo</label>
+            <label><input type="checkbox"> Limpiar con tela humedecida y paño seco</label>
+            <label><input type="checkbox"> Limpiar el procesador y cambiar pasta térmica</label>
+        </div>
+
+        <h3>Mantenimiento del Monitor</h3>
+        <div class="checkbox-group">
+            <label><input type="checkbox"> Limpiar superficie con compresora de aire</label>
+            <label><input type="checkbox"> Limpiar la pantalla con solución especial</label>
+        </div>
+
+        <h3>Mantenimiento del Teclado y Mouse</h3>
+        <div class="checkbox-group">
+            <label><input type="checkbox"> Retirar residuos con compresor de aire</label>
+            <label><input type="checkbox"> Limpiar con alcohol isopropílico</label>
+        </div>
+
+        <h3>Mantenimiento del Cableado Estructurado</h3>
+        <div class="checkbox-group">
+            <label><input type="checkbox"> Cambiar terminales RJ45 dañados</label>
+            <label><input type="checkbox"> Limpiar con alcohol isopropílico y organizar</label>
+        </div>
+
+        <h3>Mantenimiento de Impresoras</h3>
+        <div class="checkbox-group">
+            <label><input type="checkbox"> Limpiar con compresora de aire y brocha</label>
+            <label><input type="checkbox"> Limpiar con tela humedecida</label>
+        </div>
+
+        <h3>Mantenimiento del Software</h3>
+        <div class="checkbox-group">
+            <label><input type="checkbox"> Respaldo de información</label>
+            <label><input type="checkbox"> Instalación de Windows, Microsoft Office, y drivers</label>
+            <label><input type="checkbox"> Instalación de antivirus, Skype, y otros programas necesarios</label>
+        </div>
+    </div>
+
+    <!-- Revisión de Terminal Bancaria -->
+    <div class="section">
+        <h2>Revisión de Terminal Bancaria</h2>
+        <div class="checkbox-group">
+            <label><input type="checkbox"> Revisar conexiones</label>
+            <label><input type="checkbox"> Verificar conexión a Internet</label>
+        </div>
+    </div>
+
+    <!-- Descripción y comentarios -->
+    <div class="section">
+        <h2>Descripción y Comentarios del Servicio</h2>
+        <textarea placeholder="Detalles y observaciones del servicio..." rows="5"></textarea>
+    </div>
+
+    <!-- Firma -->
+    <div class="footer">
+        <h3>Señor Usuario, por favor verifique el funcionamiento de su equipo antes de firmar</h3>
+        <div class="firma">
+            <label for="nombre_representante">Nombre del Representante de Soporte:</label>
+            <input type="text" id="nombre_representante" name="nombre_representante">
+            <label for="nombre_usuario">Nombre y Firma de Aceptación del Usuario:</label>
+            <input type="text" id="nombre_usuario" name="nombre_usuario">
+        </div>
+        <button class="button" type="submit">Enviar Checklist</button>
+    </div>
+
 </div>
-
-<script>
-    // Función para enviar el mensaje personalizado por WhatsApp
-    function enviarWhatsApp() {
-        var nombre = document.getElementById('nombre').value;
-        var mensaje = document.getElementById('mensaje').value;
-
-        // Formateamos el mensaje para que sea adecuado en un enlace
-        var mensajeFormateado = encodeURIComponent("Hola, soy " + nombre + ". " + mensaje);
-
-        // Número de teléfono al que se enviará el mensaje (modifica este número por el que desees)
-        var numeroTelefono = "529671515365"; // Reemplaza con tu número
-
-        // Abrimos WhatsApp con el mensaje y número formateado
-        var url = "https://wa.me/" + numeroTelefono + "?text=" + mensajeFormateado;
-        window.open(url, "_blank");
-    }
-</script>
 
 </body>
 </html>
