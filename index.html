@@ -4,65 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Contacto</title>
-
-    <!-- Usamos la nueva versión de SDK v4 de EmailJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-    <script type="text/javascript">
-        // Inicializamos EmailJS con tu public key
-        (function(){
-            emailjs.init("tu_public_key");  // Reemplaza con tu public key de EmailJS
-        })();
-    </script>
-
-    <style>
-        /* Estilos básicos */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-        h2 {
-            color: #333;
-        }
-        label {
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .success-message {
-            color: green;
-            margin-top: 20px;
-        }
-        .error-message {
-            color: red;
-            margin-top: 20px;
-        }
-    </style>
 </head>
 <body>
 
 <h2>Formulario de Contacto</h2>
 
-<!-- Formulario de contacto -->
-<form id="contact-form">
+<form action="mailto:tuemail@dominio.com" method="post" enctype="text/plain">
     <label for="nombre">Nombre:</label><br>
     <input type="text" id="nombre" name="nombre" required><br><br>
     
@@ -72,38 +19,8 @@
     <label for="mensaje">Mensaje:</label><br>
     <textarea id="mensaje" name="mensaje" rows="4" cols="50" required></textarea><br><br>
 
-    <button type="button" onclick="sendEmail()">Enviar Correo</button>
+    <button type="submit">Enviar Correo</button>
 </form>
-
-<div id="response-message"></div>
-
-<script type="text/javascript">
-    // Función para enviar el correo usando el SDK v4 de EmailJS
-    function sendEmail() {
-        var nombre = document.getElementById("nombre").value;
-        var email = document.getElementById("email").value;
-        var mensaje = document.getElementById("mensaje").value;
-
-        var templateParams = {
-            "nombre": nombre,
-            "email": email,
-            "mensaje": mensaje
-        };
-
-        // Enviamos el correo usando el servicio y la plantilla que creaste en EmailJS
-        emailjs.send("tu_servicio_id", "tu_plantilla_id", templateParams)
-            .then(function(response) {
-                // Si el correo se envía correctamente
-                document.getElementById("response-message").innerHTML = "<p class='success-message'>¡Correo enviado exitosamente!</p>";
-                // Limpiamos el formulario
-                document.getElementById("contact-form").reset();
-            }, function(error) {
-                // Si hay algún error
-                document.getElementById("response-message").innerHTML = "<p class='error-message'>Hubo un error al enviar el correo. Por favor intenta de nuevo.</p>";
-            });
-    }
-</script>
 
 </body>
 </html>
-
