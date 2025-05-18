@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Contacto</title>
 
-    <!-- Incluimos la nueva versión del SDK v4 de EmailJS con la carga desde un módulo -->
-    <script type="module">
-        // Importar el SDK de EmailJS desde la URL recomendada
-        import emailjs from 'https://cdn.emailjs.com/dist/email.min.js';
-        
-        // Inicializar EmailJS con tu ID de usuario
-        emailjs.init("tu_usuario_id");  // Reemplaza con tu ID de usuario de EmailJS
+    <!-- Usamos la nueva versión de SDK v4 de EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script type="text/javascript">
+        // Inicializamos EmailJS con tu public key
+        (function(){
+            emailjs.init("tu_public_key");  // Reemplaza con tu public key de EmailJS
+        })();
     </script>
 
     <style>
@@ -76,7 +77,7 @@
 
 <div id="response-message"></div>
 
-<script type="module">
+<script type="text/javascript">
     // Función para enviar el correo usando el SDK v4 de EmailJS
     function sendEmail() {
         var nombre = document.getElementById("nombre").value;
