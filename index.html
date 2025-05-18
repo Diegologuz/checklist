@@ -203,29 +203,31 @@
             </div>
 
             <h3>Componentes</h3>
-            <div class="input-group">
-                <label for="cpu">CPU / Portátil:</label>
-                <input type="text" id="cpu" name="cpu">
-            </div>
-            <div class="input-group">
-                <label for="monitor">Monitor:</label>
-                <input type="text" id="monitor" name="monitor">
-            </div>
-            <div class="input-group">
-                <label for="teclado">Teclado y Mouse:</label>
-                <input type="text" id="teclado" name="teclado">
-            </div>
-            <div class="input-group">
-                <label for="cableado">Cableado Estructurado:</label>
-                <input type="text" id="cableado" name="cableado">
-            </div>
-            <div class="input-group">
-                <label for="impresora_ticket">Impresora de Ticket:</label>
-                <input type="text" id="impresora_ticket" name="impresora_ticket">
-            </div>
-            <div class="input-group">
-                <label for="impresora_laser">Impresora Láser:</label>
-                <input type="text" id="impresora_laser" name="impresora_laser">
+            <div class="grid-container">
+                <div class="input-group">
+                    <label for="cpu">CPU / Portátil:</label>
+                    <input type="text" id="cpu" name="cpu">
+                </div>
+                <div class="input-group">
+                    <label for="monitor">Monitor:</label>
+                    <input type="text" id="monitor" name="monitor">
+                </div>
+                <div class="input-group">
+                    <label for="teclado">Teclado y Mouse:</label>
+                    <input type="text" id="teclado" name="teclado">
+                </div>
+                <div class="input-group">
+                    <label for="cableado">Cableado Estructurado:</label>
+                    <input type="text" id="cableado" name="cableado">
+                </div>
+                <div class="input-group">
+                    <label for="impresora_ticket">Impresora de Ticket:</label>
+                    <input type="text" id="impresora_ticket" name="impresora_ticket">
+                </div>
+                <div class="input-group">
+                    <label for="impresora_laser">Impresora Láser:</label>
+                    <input type="text" id="impresora_laser" name="impresora_laser">
+                </div>
             </div>
         </div>
     </div>
@@ -235,33 +237,36 @@
         <h2>Checklist para el Mantenimiento de Equipos</h2>
         <button class="accordion">Puntos de Chequeo</button>
         <div class="panel">
-            <label><input type="checkbox"> Verificar condiciones del equipo (manchas, rayones, golpes, etc.)</label><br>
-            <label><input type="checkbox"> Encender el equipo y verificar que el sistema operativo inicie correctamente</label><br>
-            <label><input type="checkbox"> Limpiar CPU/Portátil y componentes internos</label><br>
-            <label><input type="checkbox"> Limpiar Monitor</label><br>
-            <label><input type="checkbox"> Limpiar teclado y mouse</label><br>
-            <label><input type="checkbox"> Verificar cableado estructurado</label><br>
-            <label><input type="checkbox"> Limpiar impresoras (ticket y láser)</label><br>
-            <label><input type="checkbox"> Respaldar información y configurar software</label><br>
+            <label><input type="checkbox" id="check1"> Verificar condiciones del equipo (manchas, rayones, golpes, etc.)</label><br>
+            <label><input type="checkbox" id="check2"> Encender el equipo y verificar que el sistema operativo inicie correctamente</label><br>
+            <label><input type="checkbox" id="check3"> Limpiar CPU / Portátil y componentes internos</label><br>
+            <label><input type="checkbox" id="check4"> Limpiar Monitor</label><br>
+            <label><input type="checkbox" id="check5"> Limpiar teclado y mouse</label><br>
+            <label><input type="checkbox" id="check6"> Verificar cableado estructurado</label><br>
+            <label><input type="checkbox" id="check7"> Limpiar impresoras (ticket y láser)</label><br>
+            <label><input type="checkbox" id="check8"> Respaldar información y configurar software</label><br>
         </div>
+    </div>
+
+    <!-- Descripción y Comentarios -->
+    <div class="section">
+        <h2>Descripción y Comentarios del Servicio</h2>
+        <textarea id="comentarios" name="comentarios" rows="4" placeholder="Escribe los comentarios aquí..."></textarea>
     </div>
 
     <!-- Firma -->
     <div class="footer">
         <h3>Señor usuario, por favor verifique el funcionamiento de su equipo antes de firmar</h3>
         <div class="firma">
-            <label for="nombre_representante">Nombre del Representante de Soporte:</label>
-            <input type="text" id="nombre_representante" name="nombre_representante">
-
-            <label for="nombre_usuario">Nombre y Firma de Aceptación del Usuario:</label>
-            <input type="text" id="nombre_usuario" name="nombre_usuario">
+            <input type="text" id="representante" placeholder="Nombre del Representante de Soporte">
+            <input type="text" id="usuario" placeholder="Nombre y Firma de Aceptación del Usuario">
         </div>
         <button class="export-btn" id="exportBtn">Exportar a PDF</button>
     </div>
 </div>
 
 <script>
-    // Función para manejar el acordeón
+    // Acordeón para desplegar los puntos de chequeo
     const accordions = document.querySelectorAll('.accordion');
     accordions.forEach(acc => {
         acc.addEventListener('click', function () {
@@ -271,7 +276,7 @@
         });
     });
 
-    // Función para exportar el formulario a PDF
+    // Función para exportar a PDF
     document.getElementById('exportBtn').addEventListener('click', function () {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
@@ -280,7 +285,7 @@
         doc.setFontSize(22);
         doc.text('Checklist de Mantenimiento de Equipos', 10, 10);
 
-        // Información del Mantenimiento
+        // Información de mantenimiento
         doc.setFontSize(16);
         doc.text('Información del Mantenimiento:', 10, 30);
         doc.text('Fecha: ' + document.getElementById('fecha').value, 10, 40);
@@ -290,7 +295,7 @@
         doc.text('Ciudad: ' + document.getElementById('ciudad').value, 10, 80);
         doc.text('Clave: ' + document.getElementById('clave').value, 10, 90);
 
-        // Datos del Usuario
+        // Datos del usuario
         doc.text('Datos del Usuario:', 10, 100);
         doc.text('Tipo de equipo: ' + document.getElementById('tipo').value, 10, 110);
         doc.text('CPU / Portátil: ' + document.getElementById('cpu').value, 10, 120);
@@ -298,11 +303,11 @@
 
         // Checklist de Mantenimiento
         doc.text('Checklist:', 10, 140);
-        doc.text('1. Verificar condiciones del equipo: ' + document.querySelector('input[type="checkbox"]:nth-of-type(1)').checked, 10, 150);
-        doc.text('2. Encender el equipo: ' + document.querySelector('input[type="checkbox"]:nth-of-type(2)').checked, 10, 160);
-        doc.text('3. Limpiar la CPU/Portátil: ' + document.querySelector('input[type="checkbox"]:nth-of-type(3)').checked, 10, 170);
+        doc.text('1. Verificar condiciones del equipo: ' + document.getElementById('check1').checked, 10, 150);
+        doc.text('2. Encender el equipo: ' + document.getElementById('check2').checked, 10, 160);
+        doc.text('3. Limpiar CPU/Portátil: ' + document.getElementById('check3').checked, 10, 170);
 
-        // Export PDF
+        // Exportar PDF
         doc.save('checklist_mantenimiento.pdf');
     });
 </script>
