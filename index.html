@@ -9,8 +9,9 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- jsPDF Library -->
+    <!-- html2pdf Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://rawgit.com/eKoopmans/html2pdf.js/master/dist/html2pdf.bundle.js"></script>
 
     <style>
         body {
@@ -154,7 +155,7 @@
     Checklist de Mantenimiento de Equipos
 </header>
 
-<div class="container">
+<div class="container" id="content">
 
     <div class="section">
         <h2>Información del Mantenimiento</h2>
@@ -237,11 +238,11 @@
         <h2>Checklist para el Mantenimiento de Equipos</h2>
         <button class="accordion">Puntos de Chequeo</button>
         <div class="panel">
-            <label><input type="checkbox" id="check1"> Verificar condiciones del equipo (manchas, rayones, golpes, etc.)</label><br>
-            <label><input type="checkbox" id="check2"> Encender el equipo y verificar que el sistema operativo inicie correctamente</label><br>
-            <label><input type="checkbox" id="check3"> Limpiar CPU / Portátil y componentes internos</label><br>
+            <label><input type="checkbox" id="check1"> Verificar condiciones del equipo</label><br>
+            <label><input type="checkbox" id="check2"> Encender el equipo</label><br>
+            <label><input type="checkbox" id="check3"> Limpiar CPU/Portátil</label><br>
             <label><input type="checkbox" id="check4"> Limpiar Monitor</label><br>
-            <label><input type="checkbox" id="check5"> Limpiar teclado y mouse</label><br>
+            <label><input type="checkbox" id="check5"> Limpiar Teclado y Mouse</label><br>
             <label><input type="checkbox" id="check6"> Verificar cableado estructurado</label><br>
             <label><input type="checkbox" id="check7"> Limpiar impresoras (ticket y láser)</label><br>
             <label><input type="checkbox" id="check8"> Respaldar información y configurar software</label><br>
@@ -278,37 +279,14 @@
 
     // Función para exportar a PDF
     document.getElementById('exportBtn').addEventListener('click', function () {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-
-        // Título
-        doc.setFontSize(22);
-        doc.text('Checklist de Mantenimiento de Equipos', 10, 10);
-
-        // Información de mantenimiento
-        doc.setFontSize(16);
-        doc.text('Información del Mantenimiento:', 10, 30);
-        doc.text('Fecha: ' + document.getElementById('fecha').value, 10, 40);
-        doc.text('Dirección: ' + document.getElementById('direccion').value, 10, 50);
-        doc.text('Sucursal: ' + document.getElementById('sucursal').value, 10, 60);
-        doc.text('Estado: ' + document.getElementById('estado').value, 10, 70);
-        doc.text('Ciudad: ' + document.getElementById('ciudad').value, 10, 80);
-        doc.text('Clave: ' + document.getElementById('clave').value, 10, 90);
-
-        // Datos del usuario
-        doc.text('Datos del Usuario:', 10, 100);
-        doc.text('Tipo de equipo: ' + document.getElementById('tipo').value, 10, 110);
-        doc.text('CPU / Portátil: ' + document.getElementById('cpu').value, 10, 120);
-        doc.text('Monitor: ' + document.getElementById('monitor').value, 10, 130);
-
-        // Checklist de Mantenimiento
-        doc.text('Checklist:', 10, 140);
-        doc.text('1. Verificar condiciones del equipo: ' + document.getElementById('check1').checked, 10, 150);
-        doc.text('2. Encender el equipo: ' + document.getElementById('check2').checked, 10, 160);
-        doc.text('3. Limpiar CPU/Portátil: ' + document.getElementById('check3').checked, 10, 170);
-
-        // Exportar PDF
-        doc.save('checklist_mantenimiento.pdf');
+        const element = document.getElementById('content'); // Todo el contenido del formulario
+        html2pdf(element, {
+            margin:       10,
+            filename:     'checklist_mantenimiento.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 4 },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        });
     });
 </script>
 
